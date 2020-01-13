@@ -2,14 +2,14 @@
     {{ partial "mobile_nav_toggle.html" . }}
     <div class="grid">
         <div class="row">
-          {{ range .Data.Pages }}
+         {{ range (.Paginator 20).Pages.ByDate }} 
               <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 masonry-item">
                   <div class="box-masonry">
                       {{ if and (isset .Params "image") .Params.image }}
                         {{ if eq .Params.showonlyimage true }}
                         <a href="{{ .Permalink }}" title="" class="box-masonry-image with-hover-overlay">
                         {{ else }}
-                        <a href="{{ .Permalink }}" title="" class="box-masonry-image with-hover-overlay with-hover-icon">
+                        <a href="{{ .Permalink }}" title="" class="box-masonry..image with-hover-overlay with-hover-icon">
                         {{ end }}
                             <img src="{{.Params.image | absURL}}" alt="" class="img-responsive">
                         </a>
@@ -35,4 +35,5 @@
           {{ end }}
         </div>
     </div>
+    {{ template "_internal/pagination.html" . }}
 </div>
